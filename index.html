@@ -1,14 +1,113 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
 <head>
-	<title> Mr. Striet's Funhouse </title>
-	
+    <title>Br00fus Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+
+        .button-container {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container p {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+
+        .button-container .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            cursor: pointer;
+            border: 2px solid #007BFF;
+            background-color: #007BFF;
+            color: white;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        video, audio {
+            display: none;
+        }
+
+        video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
 </head>
 <body>
-	<a href="https://www.youtube.com/watch?v=yWkZbXycN2Q">
-	<b> The Secret To All Life<b>
-	<img src="images/honda.png" height="300" title="Beautiful isn't it?" style="position:relative; left:600px; top:300px">
-	</a>
+    <div class="button-container">
+        <p>This site uses cookies to provide all necessary features.</p>
+        <div class="buttons">
+            <button id="acceptButton">Accept</button>
+            <button id="continueButton">Continue without cookies</button>
+        </div>
+    </div>
+
+    <video id="myVideo" autoplay loop muted>
+        <source src="https://i.imgur.com/FVBVvgl.mp4" type="video/mp4">
+        Your browser does not support the video element.
+    </video>
+
+    <audio id="myAudio" loop>
+        <source src="music/jeff.mp3" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+
+    <script>
+        let acceptButton = document.getElementById("acceptButton");
+        let continueButton = document.getElementById("continueButton");
+        let video = document.getElementById("myVideo");
+        let audio = document.getElementById("myAudio");
+        let buttonContainer = document.querySelector(".button-container");
+
+        function showMedia() {
+            buttonContainer.style.display = "none";
+            video.style.display = "block";
+            audio.style.display = "block";
+            video.play();
+            audio.play();
+
+            if (document.documentElement.requestFullscreen) {
+                document.documentElement.requestFullscreen();
+            } else if (document.documentElement.mozRequestFullScreen) {
+                document.documentElement.mozRequestFullScreen();
+            } else if (document.documentElement.webkitRequestFullscreen) {
+                document.documentElement.webkitRequestFullscreen();
+            } else if (document.documentElement.msRequestFullscreen) {
+                document.documentElement.msRequestFullscreen();
+            }
+        }
+
+        acceptButton.addEventListener("click", showMedia);
+        continueButton.addEventListener("click", showMedia);
+    </script>
 </body>
 </html>
